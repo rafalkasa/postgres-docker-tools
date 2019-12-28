@@ -8,6 +8,8 @@ fi
 
 if [ "${SCHEDULE}" = "**None**" ]; then
   bash backup.sh
+elif [ "${SCHEDULE}" = "RESTORE" ]; then
+  bash restore.sh
 else
   exec go-cron "$SCHEDULE" /bin/bash backup.sh
 fi
