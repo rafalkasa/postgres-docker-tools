@@ -91,7 +91,6 @@ az storage blob download \
 	--account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY \
     --name $file \
     --file dump.sql.gz
-gzip -d dump.sql.gz
 
 if [ "${DROP_PUBLIC}" == "yes" ]; then
 	echo "Recreating the public schema"
@@ -100,6 +99,6 @@ fi
 
 echo "Restoring ${LATEST_BACKUP}"
 
-psql $POSTGRES_HOST_OPTS -d $POSTGRES_DATABASE < dump.sql
+gunzip -c dump.sql.gz | psql $POSTGRES_HOST_OPTS -d $POSTGRES_DATABASE
 
 echo "Restore complete"
