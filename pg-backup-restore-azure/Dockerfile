@@ -24,6 +24,6 @@ ENV SCHEDULE **None**
 
 RUN mkdir -p app
 WORKDIR /app
-ADD ./* /app
+ADD ./* /app/
 
 CMD ["sh", "/app/run.sh"]
