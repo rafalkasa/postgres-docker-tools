@@ -78,8 +78,8 @@ if [ "${AZURE_BLOB_NAME}" = "**None**" ]; then
   file=$(az storage blob list \
     --container-name $AZURE_STORAGE_CONTAINER \
 	--account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY \
-    --query 'max_by([], &properties.lastModified)' -o tsv | cut -f3)
-
+    --query "max_by([], &properties.lastModified)" --output tsv | cut -f3)
+  echo $file
 else
   file=${AZURE_BLOB_NAME}
 fi
