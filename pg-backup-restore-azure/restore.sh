@@ -70,7 +70,8 @@ az login \
   --service-principal \
   --user $AZURE_APP_ID \
   --password $AZURE_SECRET_ID \
-  --tenant $AZURE_TENANT_ID
+  --tenant $AZURE_TENANT_ID \
+  --allow-no-subscriptions
 
 if [ "${AZURE_BLOB_NAME}" = "**None**" ]; then
   echo "Finding latest backup"

@@ -74,7 +74,8 @@ az login \
   --service-principal \
   --user $AZURE_APP_ID \
   --password $AZURE_SECRET_ID \
-  --tenant $AZURE_TENANT_ID
+  --tenant $AZURE_TENANT_ID \
+  --allow-no-subscriptions
 
 echo "Uploading dump to $AZURE_STORAGE_CONTAINER"
 
