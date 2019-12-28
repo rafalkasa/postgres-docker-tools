@@ -23,11 +23,7 @@ ENV AZURE_BLOB_NAME **None**
 ENV SCHEDULE **None**
 
 RUN mkdir -p app
-COPY ./ /app
 WORKDIR /app
+ADD ./* /app
 
-ADD run.sh run.sh
-ADD backup.sh backup.sh
-ADD restore.sh restore.sh
-
-CMD ["sh", "run.sh"]
+CMD ["sh", "/app/run.sh"]
