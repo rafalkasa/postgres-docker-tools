@@ -77,6 +77,7 @@ if [ "${AZURE_BLOB_NAME}" = "**None**" ]; then
   echo "Finding latest backup"
   file=$(az storage blob list \
     --container-name $AZURE_STORAGE_CONTAINER \
+	--account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY \
     --query 'max_by([], &properties.lastModified)' -o tsv | cut -f3)
 
 else
@@ -87,6 +88,7 @@ echo "Fetching ${file} from Azure"
 
 az storage blob download \
     --container-name $AZURE_STORAGE_CONTAINER \
+	--account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY \
     --name $file \
     --file dump.sql.gz
 gzip -d dump.sql.gz

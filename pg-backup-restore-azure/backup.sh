@@ -79,10 +79,13 @@ az login \
 
 echo "Uploading dump to $AZURE_STORAGE_CONTAINER"
 
-az storage container create --name $AZURE_STORAGE_CONTAINER
+az storage container create \
+	--name $AZURE_STORAGE_CONTAINER \
+	--account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY
 
 az storage blob upload \
   --container-name $AZURE_STORAGE_CONTAINER \
+  --account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY \
   --name ${POSTGRES_DATABASE}_$(date +"%Y-%m-%dT%H:%M:%SZ").sql.gz \
   --file dump.sql.gz
 # cat dump.sql.gz | aws $AWS_ARGS s3 cp - s3://$S3_BUCKET/$S3_PREFIX/${POSTGRES_DATABASE}_$(date +"%Y-%m-%dT%H:%M:%SZ").sql.gz || exit 2
