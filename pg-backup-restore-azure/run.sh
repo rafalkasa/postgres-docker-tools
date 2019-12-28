@@ -7,9 +7,9 @@ if [ "${S3_S3V4}" = "yes" ]; then
 fi
 
 if [ "${SCHEDULE}" = "**None**" ]; then
-  bash /app/backup.sh
+  bash backup.sh
 elif [ "${SCHEDULE}" = "RESTORE" ]; then
-  bash /app/restore.sh
+  bash restore.sh
 else
-  exec go-cron "$SCHEDULE" /bin/bash /app/backup.sh
+  exec go-cron "$SCHEDULE" /bin/bash backup.sh
 fi

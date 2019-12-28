@@ -26,4 +26,4 @@ RUN mkdir -p app
 WORKDIR /app
 ADD ./* /app/
 
-CMD ["sh", "/app/run.sh"]
+CMD ["sh", "run.sh"]
