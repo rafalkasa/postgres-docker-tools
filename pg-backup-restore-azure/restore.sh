@@ -86,11 +86,13 @@ fi
 
 echo "Fetching ${file} from Azure"
 
+if [ "${AZURE_BLOB_SKIP_DOWNLOAD}" = "**False**" ]; then
 az storage blob download \
     --container-name $AZURE_STORAGE_CONTAINER \
 	--account-name $AZURE_STORAGE_ACCOUNT --account-key $AZURE_STORAGE_ACCESS_KEY \
     --name $file \
     --file /data/dump.sql.gz
+fi
 
 if [ "${DROP_PUBLIC}" == "yes" ]; then
 	echo "Recreating the public schema"
